@@ -67,7 +67,7 @@ public class SwiftFlutterHeadsetDetectorPlugin: NSObject, FlutterPlugin {
 
     func hasHeadphones(in routeDescription: AVAudioSessionRouteDescription) -> Bool {
         // Filter the outputs to only those with a port type of headphones.
-        return !routeDescription.outputs.filter({$0.portType == .headphones || $0.portType == .usbAudio、}).isEmpty
+        return !routeDescription.outputs.filter({$0.portType == .headphones || $0.portType == .usbAudio}).isEmpty
     }
 
     func HeadsetIsConnect() -> [Int : Bool]  {
