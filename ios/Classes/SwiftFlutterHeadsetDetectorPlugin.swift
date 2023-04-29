@@ -67,7 +67,7 @@ public class SwiftFlutterHeadsetDetectorPlugin: NSObject, FlutterPlugin {
 
     func hasHeadphones(in routeDescription: AVAudioSessionRouteDescription) -> Bool {
         // Filter the outputs to only those with a port type of headphones.
-        return !routeDescription.outputs.filter({$0.portType == .headphones}).isEmpty
+        return !routeDescription.outputs.filter({$0.portType == .headphones || $0.portType == .usbAudio、}).isEmpty
     }
 
     func HeadsetIsConnect() -> [Int : Bool]  {
@@ -76,7 +76,10 @@ public class SwiftFlutterHeadsetDetectorPlugin: NSObject, FlutterPlugin {
         var state : [Int : Bool] = [0: false, 1: false]
         for output in currentRoute.outputs {
             let portType = output.portType
+            
             switch portType {
+                case AVAudioSession.Port.usbAudio:
+                    state[0] = true
                 case AVAudioSession.Port.headphones:
                     state[0] = true
                 case AVAudioSession.Port.bluetoothA2DP:
